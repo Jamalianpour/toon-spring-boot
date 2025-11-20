@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: toon-spring-boot
+
+toon:
+  converter:
+    indent: "  "
+    include-nulls: false
+    compact-arrays: true
+    array-delimiter: ","
+    tabular-arrays: true
+    max-depth: 100
+    quote-field-names: false
+    default-date-format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
