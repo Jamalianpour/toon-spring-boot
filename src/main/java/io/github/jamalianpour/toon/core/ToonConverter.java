@@ -120,6 +120,7 @@ public class ToonConverter {
 
     /**
      * Converts a uniform object collection to tabular format.
+     * Falls back to list format if objects contain complex nested structures.
      */
     private void convertTabularArray(List<?> list, StringBuilder builder, int indentLevel) throws Exception {
         if (list.isEmpty()) return;
@@ -127,6 +128,13 @@ public class ToonConverter {
         Object firstItem = list.get(0);
         Class<?> itemClass = firstItem.getClass();
         List<FieldInfo> fields = getFields(itemClass);
+
+        // Check if any field contains complex nested structures
+        if (hasComplexNestedFields(fields, list)) {
+            // Fall back to list format for complex nested structures
+            convertListArray(list, builder, indentLevel);
+            return;
+        }
 
         // Build header: [size]{field1,field2,...}:
         builder.append("[").append(list.size()).append("]{");
@@ -148,6 +156,30 @@ public class ToonConverter {
     }
 
     /**
+     * Checks if any field in the collection contains complex nested structures
+     * (collections, arrays, or objects).
+     */
+    private boolean hasComplexNestedFields(List<FieldInfo> fields, List<?> items) throws Exception {
+        if (items.isEmpty()) return false;
+
+        for (FieldInfo fieldInfo : fields) {
+            for (Object item : items) {
+                Object value = fieldInfo.field.get(item);
+                if (value != null) {
+                    Class<?> valueClass = value.getClass();
+                    // Check if it's a collection, array, or non-primitive object
+                    if (value instanceof Collection ||
+                            valueClass.isArray() ||
+                            (!isPrimitive(valueClass) && !(value instanceof Map))) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Converts a primitive collection to inline format.
      */
     private void convertInlineArray(List<?> list, StringBuilder builder) {
@@ -165,7 +197,7 @@ public class ToonConverter {
 
         for (Object item : list) {
             builder.append("\n").append(getIndent(indentLevel + 1)).append("- ");
-            convertValue(item, builder, indentLevel + 1, false);
+            convertValue(item, builder, indentLevel + 2, false);
         }
     }
 
@@ -424,7 +456,7 @@ public class ToonConverter {
      * Checks if all elements in a collection are uniform objects.
      */
     private boolean isUniformObjectCollection(List<?> list) {
-        if (list.isEmpty() || list.size() == 1) return false;
+        if (list.isEmpty()) return false;
 
         Class<?> firstClass = list.get(0).getClass();
         if (isPrimitive(firstClass)) return false;
