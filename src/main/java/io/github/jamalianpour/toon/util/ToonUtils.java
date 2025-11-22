@@ -50,7 +50,7 @@ public final class ToonUtils {
      * Builder for creating custom TOON converters.
      */
     public static class ToonConverterBuilder {
-        private final ToonConfiguration.ToonConfigurationBuilder configBuilder =
+        private final ToonConfiguration.ConfigurationBuilder configBuilder =
                 ToonConfiguration.builder();
 
         public ToonConverterBuilder withIndent(String indent) {
