@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.jamalianpour.toon.config.ToonConverterAutoConfiguration

@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "toon.converter.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "Enable or disable TOON converter auto-configuration"
+    }
+  ]
+}

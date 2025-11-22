@@ -1,0 +1,108 @@
+{
+  "groups": [
+    {
+      "name": "toon.converter",
+      "type": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "sourceType": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "description": "Configuration properties for TOON converter"
+    }
+  ],
+  "properties": [
+    {
+      "name": "toon.converter.indent",
+      "type": "java.lang.String",
+      "sourceType": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "defaultValue": "  ",
+      "description": "Indentation string for nested objects in TOON output"
+    },
+    {
+      "name": "toon.converter.include-nulls",
+      "type": "java.lang.Boolean",
+      "sourceType": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "defaultValue": false,
+      "description": "Whether to include null values in TOON output"
+    },
+    {
+      "name": "toon.converter.compact-arrays",
+      "type": "java.lang.Boolean",
+      "sourceType": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "defaultValue": true,
+      "description": "Whether to use compact format for arrays"
+    },
+    {
+      "name": "toon.converter.array-delimiter",
+      "type": "java.lang.String",
+      "sourceType": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "defaultValue": ",",
+      "description": "Delimiter character for array elements"
+    },
+    {
+      "name": "toon.converter.tabular-arrays",
+      "type": "java.lang.Boolean",
+      "sourceType": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "defaultValue": true,
+      "description": "Whether to use tabular format for uniform object arrays"
+    },
+    {
+      "name": "toon.converter.max-depth",
+      "type": "java.lang.Integer",
+      "sourceType": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "defaultValue": 100,
+      "description": "Maximum depth for nested objects to prevent infinite recursion"
+    },
+    {
+      "name": "toon.converter.quote-field-names",
+      "type": "java.lang.Boolean",
+      "sourceType": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "defaultValue": false,
+      "description": "Whether to quote field names containing special characters"
+    },
+    {
+      "name": "toon.converter.default-date-format",
+      "type": "java.lang.String",
+      "sourceType": "io.github.jamalianpour.toon.model.ToonConfiguration",
+      "defaultValue": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+      "description": "Default date format pattern for date serialization"
+    }
+  ],
+  "hints": [
+    {
+      "name": "toon.converter.array-delimiter",
+      "values": [
+        {
+          "value": ",",
+          "description": "Comma delimiter (default)"
+        },
+        {
+          "value": "|",
+          "description": "Pipe delimiter"
+        },
+        {
+          "value": ";",
+          "description": "Semicolon delimiter"
+        },
+        {
+          "value": "\t",
+          "description": "Tab delimiter"
+        }
+      ]
+    },
+    {
+      "name": "toon.converter.indent",
+      "values": [
+        {
+          "value": "  ",
+          "description": "Two spaces (default)"
+        },
+        {
+          "value": "    ",
+          "description": "Four spaces"
+        },
+        {
+          "value": "\t",
+          "description": "Tab character"
+        }
+      ]
+    }
+  ]
+}
